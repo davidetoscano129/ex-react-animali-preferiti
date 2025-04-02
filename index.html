@@ -12,19 +12,29 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script type="text/babel">
-
+        const { useState } = React;
         const ListaAnimali = () => {
-            const animals = ["Cane", "Gatto", "Pappagallo"];
+
+            const animalsChoices = ["Cane", "Gatto", "Pappagallo", "Cavallo", "Panda"];
+            const [animals, setAnimals] = useState([]);
+            const addAnimal = () => {
+                const randomIndex = Math.floor(Math.random() * animalsChoices.length);
+                const randomAnimal = animalsChoices[randomIndex];
+                setAnimals(curr => [...curr, randomAnimal]);
+            }
 
             return (
-                <details>
-                    <summary>Animali</summary>
-                    <ul>
-                        {animals.map((animal, i) => (
-                            <li key={i}>{animal}</li>
-                        ))}
-                    </ul>
-                </details>
+                <>
+                    <button onClick={addAnimal}>Aggiungi Animale</button>
+                    <details>
+                        <summary>Animali</summary>
+                        <ul>
+                            {animals.map((animal, i) => (
+                                <li key={i}>{animal}</li>
+                            ))}
+                        </ul>
+                    </details>
+                </>
             )
         }
 
@@ -61,8 +71,3 @@
 </body>
 
 </html>
-
-<!-- Trasformare la pagina statica in interattiva con React -->
-<!-- Montare componente all'interno dell'elemento con classe .lista animali-->
-<!-- Write your comments here -->
-<!-- Write your comments here -->
